@@ -7,6 +7,7 @@
 import React, { Component } from 'react';
 import {
   AppRegistry,
+  Navigator,
   StyleSheet,
   Text,
   View,
@@ -18,7 +19,47 @@ import {
 var REQUEST_URL= 'https://raw.githubusercontent.com/facebook/react-native/master/docs/MoviesExample.json';
 
 
-export default class HelloRn extends Component {
+export default class MyScene extends Component {
+  static defaultProps = {
+    title: 'MyScene'
+  };
+
+  render() {
+    return (
+      <View>
+        <Text>Hi! My name is {this.props.title}.</Text>
+      </View>
+    )
+  }
+}
+
+export default class Index extends Component{
+
+render(){
+
+  return(
+    
+    <Navigator
+      initialRoute={{title: 'index', index: 0 }}
+      renderScene={(route,navigator) =>
+
+        <MovieList/>
+
+      }
+
+
+
+    />
+
+    )
+
+
+}
+
+
+}
+
+export default class MovieList extends Component {
 
 constructor(props) {
   super(props);
@@ -94,14 +135,12 @@ constructor(props) {
       dataSource={this.state.dataSource}
       renderRow={this.renderMovie}
       style={styles.listView}
-/>
+      />
 
       );
   }
 
-
-
-  renderLoadingView(){
+renderLoadingView(){
     return(
     <View style={styles.container}>
       <Text>
@@ -116,8 +155,7 @@ constructor(props) {
 
   }
 
-
-  renderMovie(movie){
+renderMovie(movie){
         return (
       <View style={styles.container}>
      
@@ -178,4 +216,5 @@ const styles = StyleSheet.create({
  
 });
 
-AppRegistry.registerComponent('HelloRn', () => HelloRn);
+
+AppRegistry.registerComponent('HelloRn', () => Index);
