@@ -1,0 +1,3 @@
+rootProject.name = 'HelloRn'
+
+include ':app'
